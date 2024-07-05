@@ -1,0 +1,15 @@
+<?php
+function dd($value)
+{
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+}
+
+//dd($_SERVER);
+//echo $_SERVER['REQUEST_URI'];
+
+function isUrl($value)
+{
+    return $_SERVER['REQUEST_URI'] === $value;
+}
