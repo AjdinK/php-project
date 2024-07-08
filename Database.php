@@ -2,11 +2,15 @@
 
 class Database
 {
-    public $connection;
+    protected $connection;
+    protected $statement;
 
 
-    public function __construct($config, $username = 'root', $password = '')
-    {
+    public function __construct(
+        $config,
+        $username = 'root',
+        $password = ''
+    ) {
 
         $dns = "mysql:".http_build_query($config, '', ';');
 
@@ -18,8 +22,29 @@ class Database
 
     public function query($query, $params = [])
     {
-        $statement = $this->connection->prepare($query);
-        $statement->execute($params);
-        return $statement;
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($params);
+        return $this;
+    }
+
+    public function fetchAll()
+    {
+        return $this->statement->fetchAll();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+
+        if (!$result) {
+            abort(Response::NOT_FOUND);
+        }
+
+        return $result;
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
     }
 }
