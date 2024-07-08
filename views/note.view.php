@@ -4,15 +4,10 @@
 
 <main>
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <?php foreach ($note as $item) : ?>
-            <li> <?= 'id : '.$item['id'] ?> </li>
-            <li> <?= 'title : '.$item['title'] ?> </li>
-            <li> <?= 'body : '.$item['body'] ?> </li>
-            <li> <?= 'user_id : '.$item['user_id'] ?> </li>
-            <br>
-            <hr>
-            <br>
-        <?php endforeach; ?>
+
+        <h1 class="text-3xl font-bold text-gray-900 mb-4"> <?= 'Title : '.$note['title'] ?> </h1>
+        <h2 class="mb-4"> <?= 'Body : '.$note['body'] ?> </h2>
+
         <a class="text-blue-500 font-bold hover:underline" href="/notes">Go Back</a>
     </div>
 </main>
