@@ -3,6 +3,7 @@
 <?php require "partials/banner.php" ?>
 
 <main>
+
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
         <?php foreach ($notes as $note) : ?>
@@ -14,6 +15,11 @@
 
         <?php endforeach; ?>
 
+        <div class="mt-4">
+            <a href="/notes/create"
+               class="bg-blue-500 text-white font-bold rounded-md px-4 py-2 hover:bg-blue-700 transition-colors duration-300">Create</a>
+        </div>
     </div>
+
 </main>
 <?php require "partials/footer.php" ?>
