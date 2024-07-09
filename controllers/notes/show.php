@@ -2,7 +2,7 @@
 
 $heading = 'My Note';
 
-$config = require "config.php";
+$config = require base_path("config.php");
 $db = new Database($config['database']);
 
 
@@ -16,5 +16,6 @@ $current_user_id = 1;
 authorize($note['user_id'] === $current_user_id);
 
 view("notes/show.view.php", [
-    'heading' => $heading
+    'heading' => $heading,
+    'note' => $note
 ]);
