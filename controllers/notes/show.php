@@ -15,4 +15,4 @@ $note = $db->query(
 $current_user_id = 1;
 authorize($note['user_id'] === $current_user_id);
 
-require "views/note.view.php";
+require "views/notes/show.view.php";
