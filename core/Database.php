@@ -9,10 +9,10 @@ class Database
     public function __construct(
         $config,
         $username = 'root',
-        $password = ''
+        $password = '123'
     ) {
 
-        $dns = "mysql:" . http_build_query($config, '', ';');
+        $dns = "mysql:".http_build_query($config, '', ';');
 
         $this->connection = new PDO($dns, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

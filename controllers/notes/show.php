@@ -12,10 +12,10 @@ $note = $db->query(
 )->findOrFail();
 
 
-$current_user_id = 1;
+$current_user_id = 3;
 authorize($note['user_id'] === $current_user_id);
 
 view("notes/show.view.php", [
     'heading' => $heading,
-    'note' => $note
+    'note' => $note,
 ]);
