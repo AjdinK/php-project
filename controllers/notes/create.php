@@ -1,5 +1,5 @@
 <?php
-require base_path("core/Validator.php");
+require base_path("Core/Validator.php");
 
 $heading = "Create Note";
 
@@ -7,6 +7,14 @@ $config = require base_path("config.php");
 $db = new Database($config['database']);
 $errors = [];
 
+
+function redirectToNotes()
+{
+    session_start();
+    $_SESSION['message'] = 'Note created successfully';
+    header('Location: /notes');
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -19,11 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':user_id' => 3,
             ':body' => $_POST['body'],
         ]);
-        
-        session_start();
-        $_SESSION['message'] = 'Note created successfully';
-        header('Location: /notes');
-        exit();
+
+        redirectToNotes();
     }
 }
 
