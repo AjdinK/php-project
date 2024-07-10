@@ -9,7 +9,8 @@
         <h2 class="mb-4"> <?= 'Body : '.$note['body'] ?> </h2>
 
         <div class="flex gap-x-6">
-            <form method="DELETE" action="">
+            <form method="POST" action="">
+                <input type="hidden" name="id" value="<?= $note['id'] ?>">
                 <button class="text-red-500 font-bold hover:underline" type="submit">Delete</button>
             </form>
             <a class="text-blue-900 font-bold hover:underline" href="/notes">Go Back</a>
