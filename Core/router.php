@@ -1,6 +1,6 @@
 <?php
-require base_path("routes.php");
-$routes = require base_path("routes.php");
+require base_path("Core/Router.php");
+$routes = require base_path("Core/Router.php");
 
 
 function abort($code = 404)

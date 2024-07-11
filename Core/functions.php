@@ -9,9 +9,6 @@ function dd($value)
     echo "</pre>";
 }
 
-//dd($_SERVER);
-//echo $_SERVER['REQUEST_URI'];
-
 function isUrl($value)
 {
     return $_SERVER['REQUEST_URI'] === $value;
@@ -24,6 +21,7 @@ function authorize($condition, $status = Response::FORBIDDEN)
     }
 }
 
+
 function base_path($path)
 {
     return BASE_PATH.$path;
@@ -33,6 +31,13 @@ function view($path, $attributes = [])
 {
     extract($attributes);
     require base_path('views/'.$path);
+}
+
+function abort($code = Response::NOT_FOUND)
+{
+    http_response_code($code);
+    require base_path("views/{$code}.view.php");
+    die();
 }
 
 
