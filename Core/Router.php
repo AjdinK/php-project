@@ -23,7 +23,7 @@ class Router
 
     public function delete($uri, $controller)
     {
-        $this->add($uri, $controller, 'POST');
+        $this->add($uri, $controller, 'DELETE');
     }
 
     public function put($uri, $controller)
