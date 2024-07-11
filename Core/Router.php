@@ -13,7 +13,7 @@ class Router
 
     protected function add($uri, $controller, $method)
     {
-        $this->routes [] = compact('uri', 'controller', 'method');
+        $this->routes[] = compact('uri', 'controller', 'method');
     }
 
     public function post($uri, $controller)

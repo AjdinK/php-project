@@ -1,13 +1,12 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
 $heading = 'My Note';
 $current_user_id = 3;
 
-$config = require base_path("config.php");
-$db = new Database($config['database']);
-
+$db = App::resolve(Database::class);
 
 $note = $db->query(
     'select * from notes where id = :id',
@@ -23,4 +22,3 @@ $db->query('delete from notes where id = :id', [
 
 header("Location: /notes");
 exit();
-

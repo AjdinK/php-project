@@ -1,14 +1,13 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
-$heading = "My Notes";
-$config = require base_path("config.php");
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
 $notes = $db->query('select * from notes')->fetchAll();
 
 
 view("notes/index.view.php", [
-    'heading' => $heading,
+    'heading' => 'My Notes',
     'notes' => $notes,
 ]);
