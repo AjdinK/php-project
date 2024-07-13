@@ -16,21 +16,21 @@
                            aria-current="page">Home</a>
 
                         <a href="/about"
-                           class=" <?= isUrl('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
+                           class=" <?= isUrl('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-150 ease-in-out">About</a>
 
                         <a href="/notes"
-                           class=" <?= isUrl('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Notes</a>
+                           class=" <?= isUrl('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-150 ease-in-out">Notes</a>
 
 
                         <a href="/contact"
-                           class=" <?= isUrl('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+                           class=" <?= isUrl('/contact') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-150 ease-in-out">Contact</a>
                     </div>
                 </div>
             </div>
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
                     <button type="button"
-                            class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            class=" transition duration-150 ease-in-out relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View notifications</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -40,6 +40,14 @@
                         </svg>
                     </button>
 
+                    <?php if ($_SESSION['user'] ?? false): ?>
+                        <a href="/manage"
+                           class="ml-3 text-base font-medium leading-none text-gray-400 hover:text-white transition duration-150 ease-in-out">Manage</a>
+                    <?php else: ?>
+                        <a href="/register"
+                           class="ml-3 text-base font-medium leading-none text-gray-400 hover:text-white transition duration-150 ease-in-out">Register</a>
+                    <?php endif; ?>
+
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
                         <div>
@@ -48,7 +56,7 @@
                                     id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                               
+
                             </button>
                         </div>
 
