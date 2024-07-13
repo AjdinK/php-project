@@ -7,6 +7,7 @@ $_SESSION['name'] = 'Hello , Ajdin';
 
 const BASE_PATH = __DIR__.'/../';
 require BASE_PATH."/Core/functions.php";
+require base_path("Core/Middleware/Middleware.php");
 
 
 spl_autoload_register(function ($class) {
