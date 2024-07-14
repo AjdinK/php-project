@@ -3,8 +3,10 @@
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                         alt="Your Company">
+                    <a href="/">
+                        <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                             alt="Your Company">
+                    </a>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
@@ -16,7 +18,7 @@
                            aria-current="page">Home</a>
 
                         <a href="/about"
-                           class=" <?= isUrl('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-150 ease-in-out">About</a>
+                           class=" <?= isUrl('/about') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
 
                         <a href="/notes"
                            class=" <?= isUrl('/notes') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-150 ease-in-out">Notes</a>
@@ -27,7 +29,9 @@
                     </div>
                 </div>
             </div>
+
             <div class="hidden md:block">
+                <?php if ($_SESSION['user'] ?? false): ?>
                 <div class="ml-4 flex items-center md:ml-6">
                     <button type="button"
                             class=" transition duration-150 ease-in-out relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -40,12 +44,15 @@
                         </svg>
                     </button>
 
-                    <?php if ($_SESSION['user'] ?? false): ?>
-                        <a href="/manage"
-                           class="ml-3 text-base font-medium leading-none text-gray-400 hover:text-white transition duration-150 ease-in-out">Manage</a>
+
+                    <a href="/manage"
+                       class="<?= isUrl('/manage') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manage</a>
                     <?php else: ?>
                         <a href="/register"
-                           class="ml-3 text-base font-medium leading-none text-gray-400 hover:text-white transition duration-150 ease-in-out">Register</a>
+                           class="<?= isUrl('/register') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                        <a href="/login"
+                           class="<?= isUrl('/login') ? 'bg-gray-900 text-white' : 'text-gray-300'; ?> rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Log
+                            In</a>
                     <?php endif; ?>
 
                     <!-- Profile dropdown -->
