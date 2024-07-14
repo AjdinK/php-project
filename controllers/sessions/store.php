@@ -28,22 +28,16 @@ $user = $db->query("select * from users where email = :email", [
 ])->find();
 
 
-if (!$user) {
-    return view('sessions/create.view.php', [
-        'errors' => [
-            'email' => 'Invalid email or password',
-            'password' => 'Invalid email or password',
-        ],
-    ]);
+if ($user) {
+    if (password_verify($password, $user['password'])) {
+        login([
+            'email' => $email,
+        ]);
+        header("location: /");
+        exit();
+    }
 }
 
-if (password_verify($password, $user['password'])) {
-    login([
-        'email' => $email,
-    ]);
-    header("location: /");
-    exit();
-}
 
 return view('sessions/create.view.php', [
     'errors' => [
