@@ -40,6 +40,13 @@ function abort($code = Response::NOT_FOUND)
     die();
 }
 
+function login($user)
+{
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+    ];
+}
+
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
