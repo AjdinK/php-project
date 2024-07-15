@@ -4,38 +4,39 @@ namespace Core;
 
 class Authenticator
 {
-  public function attempt($email, $password)
-  {
-    $user = APP::resolve(Database::class)->query("select * from users where email = :email", [
-      'email' => $email,
-    ])->find();
+    public static function logout()
+    {
+        $_SESSION = [];
+        session_destroy();
 
-    if ($user) {
-      if (password_verify($password, $user['password'])) {
-        $this->login([
-          'email' => $email,
-        ]);
-        return true;
-      }
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'],
+            $params['httponly']);
     }
-    return false;
-  }
 
-  public function login($user)
-  {
-    $_SESSION['user'] = [
-      'email' => $user['email'],
-    ];
+    public function attempt($email, $password)
+    {
+        $user = APP::resolve(Database::class)->query("select * from users where email = :email", [
+            'email' => $email,
+        ])->find();
 
-    session_regenerate_id(true);
-  }
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $this->login([
+                    'email' => $email,
+                ]);
+                return true;
+            }
+        }
+        return false;
+    }
 
-  public function logout()
-  {
-    $_SESSION = [];
-    session_destroy();
+    public static function login($user)
+    {
+        $_SESSION['user'] = [
+            'email' => $user['email'],
+        ];
 
-    $params = session_get_cookie_params();
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-  }
+        session_regenerate_id(true);
+    }
 }

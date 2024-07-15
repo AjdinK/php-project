@@ -2,7 +2,7 @@
 
 use Core\Authenticator;
 
-logout();
+Authenticator::logout();
 
 redirect('/');
 exit();

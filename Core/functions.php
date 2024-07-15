@@ -24,13 +24,13 @@ function authorize($condition, $status = Response::FORBIDDEN)
 
 function base_path($path)
 {
-    return BASE_PATH . $path;
+    return BASE_PATH.$path;
 }
 
 function view($path, $attributes = [])
 {
     extract($attributes);
-    require base_path('views/' . $path);
+    require base_path('views/'.$path);
 }
 
 function abort($code = Response::NOT_FOUND)
@@ -42,7 +42,7 @@ function abort($code = Response::NOT_FOUND)
 
 function redirect($path)
 {
-    header("location: {$path}}");
+    header("location: {$path}");
     exit();
 }
 

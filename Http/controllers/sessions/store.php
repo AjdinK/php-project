@@ -9,21 +9,17 @@ $errors = [];
 
 
 $form = new LoginForm();
-if (!$form->validate($email, $password)) {
-    return view('sessions/create.view.php', [
-        'errors' => $form->errors(),
-    ]);
+if ($form->validate($email, $password)) {
+
+    if ((new Authenticator)->attempt($email, $password)) {
+        redirect('/');
+    }
+    
+    $form->error('email', 'No Matching account found for that email address and password');
 }
 
-$auth = new Authenticator;
-
-if ($auth->attempt($email, $password)) {
-    redirect('/');
-}
 
 return view('sessions/create.view.php', [
-    'errors' => [
-        'email' => 'Invalid email or password',
-        'password' => 'Invalid email or password',
-    ],
+    'errors' => $form->errors(),
 ]);
+
