@@ -1,15 +1,12 @@
 <?php
 
-use Core\App;
-use Core\Database;
-use Core\Validator;
+use Core\Authenticator;
 use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 $errors = [];
 
-$db = App::resolve(Database::class);
 
 $form = new LoginForm();
 if (!$form->validate($email, $password)) {
@@ -18,21 +15,11 @@ if (!$form->validate($email, $password)) {
     ]);
 }
 
-$user = $db->query("select * from users where email = :email", [
-    'email' => $email,
-])->find();
+$auth = new Authenticator;
 
-
-if ($user) {
-    if (password_verify($password, $user['password'])) {
-        login([
-            'email' => $email,
-        ]);
-        header("location: /");
-        exit();
-    }
+if ($auth->attempt($email, $password)) {
+    redirect('/');
 }
-
 
 return view('sessions/create.view.php', [
     'errors' => [

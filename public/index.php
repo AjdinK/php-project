@@ -5,10 +5,10 @@ use Core\Router;
 session_start();
 $_SESSION['name'] = 'Hello , Ajdin';
 
-const BASE_PATH = __DIR__.'/../';
-require BASE_PATH."/Core/functions.php";
+const BASE_PATH = __DIR__ . '/../';
+require BASE_PATH . "/Core/functions.php";
 require base_path("Core/Middleware/Middleware.php");
-
+require base_path("Core/Authenticator.php");
 
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
