@@ -1,6 +1,7 @@
 <?php
 
 use Core\Router;
+use Core\Session;
 
 session_start();
 $_SESSION['name'] = 'Hello , Ajdin';
@@ -23,5 +24,4 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = ($_POST['_method']) ?? $_SERVER['REQUEST_METHOD'];
 $router->route($uri, $method);
 
-$_SESSION['_flash'] = [];
-unset($_SESSION['_flash']);
+Session::unflash();
