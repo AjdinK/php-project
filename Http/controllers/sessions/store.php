@@ -14,12 +14,9 @@ if ($form->validate($email, $password)) {
     if ((new Authenticator)->attempt($email, $password)) {
         redirect('/');
     }
-    
+
     $form->error('email', 'No Matching account found for that email address and password');
 }
 
-
-return view('sessions/create.view.php', [
-    'errors' => $form->errors(),
-]);
-
+$_SESSION['_flash']['errors'] = $form->errors();
+redirect('/login');
