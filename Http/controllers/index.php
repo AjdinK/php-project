@@ -1,8 +1,8 @@
 <?php
 $heading = "Home";
 view(
-  'index.view.php',
-  [
-    'heading' => $heading
-  ]
+    'index.view.php',
+    [
+      'heading' => $heading,
+    ]
 );
