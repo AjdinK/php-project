@@ -1,0 +1,10 @@
+{
+  "name": "loww/php-1",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Http\\": "Http/"
+    }
+  }
+}
