@@ -1,10 +1,20 @@
 {
   "name": "loww/php-1",
-  "require": {},
+  "require": {
+    "illuminate/collections": "^11.19"
+  },
   "autoload": {
     "psr-4": {
       "Core\\": "Core/",
       "Http\\": "Http/"
+    }
+  },
+  "require-dev": {
+    "pestphp/pest": "^2.34"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
     }
   }
 }
