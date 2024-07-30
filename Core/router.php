@@ -3,6 +3,7 @@ require base_path("Core/Router.php");
 $routes = require base_path("Core/Router.php");
 
 
+
 function abort($code = 404)
 {
     http_response_code($code);

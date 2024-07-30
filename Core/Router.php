@@ -55,7 +55,7 @@ class Router
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && strtoupper($method) === $route['method']) {
                 Middleware::resolve($route['middleware']);
-                return require base_path('Http/controllers/' . $route['controller']);
+                return require base_path('Http/controllers/'.$route['controller']);
             }
         }
         $this->abort();
@@ -66,5 +66,10 @@ class Router
         http_response_code($code);
         require base_path("views/{$code}.view.php");
         die();
+    }
+
+    public function previousUrl()
+    {
+        return $_SERVER['HTTP_REFERER'] ?? '/';
     }
 }

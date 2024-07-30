@@ -26,9 +26,9 @@ $method = ($_POST['_method']) ?? $_SERVER['REQUEST_METHOD'];
 
 try {
     $router->route($uri, $method);
-} catch (ValidationException $ex) {
-    Session::flash('errors', $ex->errors);
-    Session::flash('old', $ex->old);
-    redirect('/login');
+} catch (ValidationException $exception) {
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $exception->old);
+    redirect($router->previousUrl());
 }
 Session::unflash();
